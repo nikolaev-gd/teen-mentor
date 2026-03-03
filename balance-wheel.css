@@ -2,37 +2,65 @@
    КОЛЕСО БАЛАНСА — balance-wheel.css
    ============================================================ */
 
+/* --- Compact page hero for balance wheel --- */
+
+.balance-page .page-hero {
+    padding: 0.75rem 1rem 0.5rem !important;
+    margin-bottom: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+}
+
+.balance-page .page-hero h1 {
+    margin-bottom: 0 !important;
+    font-size: 1.35rem;
+}
+
+.balance-page .back-link {
+    margin-bottom: 0.5rem !important;
+}
+
+.balance-page .container {
+    max-width: none !important;
+    padding: 0 3vw !important;
+}
+
 .bw-app {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 40px;
-    padding: 20px 40px 60px;
-    max-width: 1100px;
-    margin: 0 auto;
+    padding: 10px 3vw 40px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* --- Wheel --- */
 
 .bw-wheel-section {
-    flex: 0 0 500px;
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: min(65vh, 55vw);
 }
 
 #wheel {
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    height: auto;
 }
 
 /* --- Right Panel --- */
 
 .bw-panel-section {
-    flex: 0 0 320px;
+    flex: 0 0 300px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding-top: 10px;
 }
 
 .bw-panel-title {
@@ -250,23 +278,28 @@
 /* --- Responsive --- */
 
 @media (max-width: 900px) {
+    .balance-page .page-hero {
+        padding-top: 0.75rem;
+        padding-bottom: 0.25rem;
+    }
+    .balance-page .page-hero h1 {
+        font-size: 1.25rem;
+    }
     .bw-app {
         flex-direction: column;
-        padding: 20px 20px 40px;
-        gap: 30px;
+        align-items: center;
+        padding: 8px 16px 40px;
+        gap: 24px;
     }
     .bw-wheel-section {
         flex: none;
         width: 100%;
-        max-width: 400px;
-    }
-    #wheel {
-        width: 100%;
-        height: auto;
+        max-width: min(60vh, 90vw);
     }
     .bw-panel-section {
         flex: none;
         width: 100%;
-        max-width: 400px;
+        max-width: 440px;
+        padding-top: 0;
     }
 }
