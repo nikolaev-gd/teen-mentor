@@ -1,0 +1,272 @@
+/* ============================================================
+   КОЛЕСО БАЛАНСА — balance-wheel.css
+   ============================================================ */
+
+.bw-app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 40px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- Wheel --- */
+
+.bw-wheel-section {
+    flex: 0 0 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wheel {
+    width: 500px;
+    height: 500px;
+}
+
+/* --- Right Panel --- */
+
+.bw-panel-section {
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bw-panel-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text, #1A1814);
+    margin-bottom: 4px;
+}
+
+#sectors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* --- Sector Item --- */
+
+.bw-sector-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.bw-sector-item:hover {
+    background: #fafafa;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bw-sector-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bw-sector-delete {
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    transition: color 0.2s;
+    font-family: inherit;
+}
+
+.bw-sector-delete:hover {
+    color: #e74c3c;
+}
+
+.bw-sector-color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.bw-sector-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.bw-sector-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 26px;
+}
+
+.bw-sector-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+    cursor: pointer;
+}
+
+.bw-sector-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: grab;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.bw-sector-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: grab;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.bw-sector-slider:active::-webkit-slider-thumb {
+    cursor: grabbing;
+}
+
+.bw-sector-percent {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #888;
+    min-width: 38px;
+    text-align: right;
+    font-weight: 500;
+}
+
+/* --- Input --- */
+
+#input-area {
+    margin-top: 4px;
+}
+
+#new-sector-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--text, #1A1814);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#new-sector-input:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+#new-sector-input::placeholder {
+    color: #aaa;
+}
+
+/* --- Modal --- */
+
+.bw-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.bw-hidden {
+    display: none !important;
+}
+
+.bw-modal-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    text-align: center;
+    min-width: 280px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.bw-modal-content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: var(--text, #1A1814);
+}
+
+.bw-modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.bw-modal-buttons button {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.bw-modal-buttons button:hover {
+    opacity: 0.85;
+}
+
+#confirm-yes {
+    background: #e74c3c;
+    color: #fff;
+}
+
+#confirm-no {
+    background: #e8e8e8;
+    color: #555;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 900px) {
+    .bw-app {
+        flex-direction: column;
+        padding: 20px 20px 40px;
+        gap: 30px;
+    }
+    .bw-wheel-section {
+        flex: none;
+        width: 100%;
+        max-width: 400px;
+    }
+    #wheel {
+        width: 100%;
+        height: auto;
+    }
+    .bw-panel-section {
+        flex: none;
+        width: 100%;
+        max-width: 400px;
+    }
+}

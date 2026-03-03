@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Колесо баланса — Геннадий Николаев</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=22">
+  <link rel="stylesheet" href="balance-wheel.css">
+</head>
+<body class="service-page balance-page">
+
+  <header class="header" id="header">
+    <div class="header-brand">
+      <a href="index.html" class="header-name">Геннадий Николаев</a>
+      <span class="header-divider"></span>
+      <span class="header-subtitle">ментор по самореализации</span>
+    </div>
+    <nav class="nav-desktop">
+      <a href="career.html">Коучинг</a>
+      <a href="tutoring.html">Тьюторство</a>
+      <a href="full-support.html">Обучение</a>
+      <a href="parents.html">Родителям</a>
+      <a href="corporate.html">Компаниям</a>
+      <a href="about.html">Обо мне</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Меню" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="nav-overlay" id="nav">
+    <button class="nav-close" aria-label="Закрыть" onclick="toggleNav()">&#10005;</button>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="career.html">Карьерный коучинг</a></li>
+      <li><a href="tutoring.html">Тьюторское сопровождение</a></li>
+      <li><a href="full-support.html">Полное сопровождение в обучении</a></li>
+      <li><a href="parents.html">Сопровождение родителей</a></li>
+      <li><a href="corporate.html">Работа с людьми в компании</a></li>
+      <li><a href="about.html">Обо мне</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div class="container">
+      <section class="page-hero">
+        <a href="index.html" class="back-link">← Главная</a>
+        <h1>Колесо баланса</h1>
+      </section>
+    </div>
+
+    <div class="bw-app">
+      <div class="bw-wheel-section">
+        <svg id="wheel" viewBox="0 0 500 500"></svg>
+      </div>
+      <div class="bw-panel-section">
+        <h2 class="bw-panel-title">Сферы жизни</h2>
+        <div id="sectors-list"></div>
+        <div id="input-area">
+          <input type="text" id="new-sector-input" placeholder="Введите сферу..." maxlength="30">
+        </div>
+      </div>
+    </div>
+
+    <div id="confirm-modal" class="bw-modal bw-hidden">
+      <div class="bw-modal-content">
+        <p id="confirm-text"></p>
+        <div class="bw-modal-buttons">
+          <button id="confirm-yes">Да</button>
+          <button id="confirm-no">Отмена</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="balance-wheel.js"></script>
+</body>
+</html>
