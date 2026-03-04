@@ -73,7 +73,6 @@
     padding-top: 10px;
     max-height: 100%;
     min-height: 0;
-    overflow: hidden;
 }
 
 .bw-panel-title {
@@ -90,8 +89,8 @@
     flex-direction: column;
     gap: 6px;
     overflow-y: auto;
-    flex: 1 1 0;
     min-height: 0;
+    max-height: calc(100vh - 210px);
     padding-right: 4px;
 }
 
