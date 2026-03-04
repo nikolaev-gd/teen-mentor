@@ -2,6 +2,13 @@
    КОЛЕСО БАЛАНСА — balance-wheel.css
    ============================================================ */
 
+/* --- Lock page scroll on desktop --- */
+
+.balance-page {
+    overflow: hidden;
+    height: 100vh;
+}
+
 /* --- Compact page hero for balance wheel --- */
 
 .balance-page .page-hero {
@@ -30,12 +37,14 @@
 
 .bw-app {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: center;
     gap: 40px;
-    padding: 10px 3vw 40px;
+    padding: 10px 3vw 20px;
     width: 100%;
     box-sizing: border-box;
+    height: calc(100vh - 110px);
+    min-height: 400px;
 }
 
 /* --- Wheel --- */
@@ -46,6 +55,7 @@
     align-items: center;
     justify-content: center;
     max-width: min(65vh, 55vw);
+    align-self: center;
 }
 
 #wheel {
@@ -59,8 +69,11 @@
     flex: 0 0 300px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     padding-top: 10px;
+    max-height: 100%;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .bw-panel-title {
@@ -69,12 +82,26 @@
     font-weight: 600;
     color: var(--text, #1A1814);
     margin-bottom: 4px;
+    flex-shrink: 0;
 }
 
 #sectors-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 6px;
+    overflow-y: auto;
+    flex: 1 1 0;
+    min-height: 0;
+    padding-right: 4px;
+}
+
+#sectors-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+#sectors-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
 }
 
 /* --- Sector Item --- */
@@ -82,10 +109,10 @@
 .bw-sector-item {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     background: #fff;
     border-radius: 10px;
-    padding: 12px 14px;
+    padding: 8px 12px;
     transition: background 0.2s, box-shadow 0.2s;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
@@ -134,7 +161,7 @@
 .bw-sector-slider-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     padding-left: 26px;
 }
 
@@ -186,11 +213,12 @@
 
 #input-area {
     margin-top: 4px;
+    flex-shrink: 0;
 }
 
 #new-sector-input {
     width: 100%;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #fff;
@@ -278,6 +306,10 @@
 /* --- Responsive --- */
 
 @media (max-width: 900px) {
+    .balance-page {
+        overflow: auto;
+        height: auto;
+    }
     .balance-page .page-hero {
         padding-top: 0.75rem;
         padding-bottom: 0.25rem;
@@ -290,16 +322,24 @@
         align-items: center;
         padding: 8px 16px 40px;
         gap: 24px;
+        height: auto;
+        min-height: auto;
     }
     .bw-wheel-section {
         flex: none;
         width: 100%;
         max-width: min(60vh, 90vw);
+        max-height: none;
     }
     .bw-panel-section {
         flex: none;
         width: 100%;
         max-width: 440px;
         padding-top: 0;
+        max-height: none;
+        overflow: visible;
+    }
+    #sectors-list {
+        overflow-y: visible;
     }
 }
