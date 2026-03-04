@@ -4,7 +4,7 @@
 
 // --- Constants ---
 const MAX_SECTORS = 8;
-const MIN_IMPORTANCE = 5;
+const MIN_IMPORTANCE = 1;
 const RING_COUNT = 10;
 const WHEEL_CX = 250;
 const WHEEL_CY = 250;
