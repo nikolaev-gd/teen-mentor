@@ -4,5 +4,6 @@ Disallow: /preview.html
 Disallow: /demo-variants.html
 
 Sitemap: https://nikolaev-mentor.ru/sitemap.xml
+LLMs.txt: https://nikolaev-mentor.ru/llms.txt
 
 Host: nikolaev-mentor.ru
