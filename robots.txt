@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /preview.html
+Disallow: /demo-variants.html
+
+Sitemap: https://nikolaev-mentor.ru/sitemap.xml
+
+Host: nikolaev-mentor.ru
