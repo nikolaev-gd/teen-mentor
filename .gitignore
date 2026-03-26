@@ -15,6 +15,7 @@ CLAUDE.md
 *.md
 
 # Временные файлы
+_to_delete/
 tmp-checks/
 Главное фото copy.png
 *.swp
