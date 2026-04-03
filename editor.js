@@ -231,11 +231,9 @@
       return r.json();
     })
     .then(function() {
-      isEditing = false;
-      window.removeEventListener('beforeunload', warnUnsaved);
       localStorage.removeItem(draftKey);
+      endEditing();
       toggle.textContent = 'Сохранено!';
-      toggle.classList.remove('editing');
       showToast('Сохранено! Изменения на сайте через 1\u20132 минуты');
       setTimeout(function() {
         toggle.textContent = 'Редактировать';
