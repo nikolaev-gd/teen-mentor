@@ -6,6 +6,9 @@ serve.py
 preview.html
 demo-variants.html
 
+# Credentials
+CREDENTIALS.md
+
 # Claude Code
 CLAUDE.md
 .claude/
