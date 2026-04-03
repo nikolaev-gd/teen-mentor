@@ -2,7 +2,6 @@
 .DS_Store
 
 # Dev tools (не для продакшена)
-editor.js
 serve.py
 preview.html
 demo-variants.html
