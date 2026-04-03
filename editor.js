@@ -2,6 +2,14 @@
   // Only run when ?edit is in the URL
   if (!new URLSearchParams(location.search).has('edit')) return;
 
+  // === НАСТРОЙКИ ПРОЕКТА ===
+  // Для нового проекта измените repo и editableSelector
+  var EDITOR_CONFIG = {
+    repo: 'nikolaev-gd/teen-mentor',
+    branch: 'main',
+    editableSelector: 'h1, h2, h3, p, li, a, button, span, .audience-item, .audience-role, .audience-note-tail'
+  };
+
   // Handle token: save from URL to localStorage, then clean URL
   var params = new URLSearchParams(location.search);
   if (params.has('token')) {
@@ -105,7 +113,7 @@
   }
 
   // Which elements can be edited
-  var editableSelector = 'h1, h2, h3, p, li, a, button, span, .audience-item, .audience-role, .audience-note-tail';
+  var editableSelector = EDITOR_CONFIG.editableSelector;
 
   toggle.addEventListener('click', function() {
     if (!isEditing) {
@@ -163,9 +171,6 @@
     window.removeEventListener('beforeunload', warnUnsaved);
   }
 
-  var GITHUB_REPO = 'nikolaev-gd/teen-mentor';
-  var GITHUB_BRANCH = 'main';
-
   function saveChanges() {
     // Stop draft autosave
     if (draftInterval) { clearInterval(draftInterval); draftInterval = null; }
@@ -197,14 +202,14 @@
     document.body.appendChild(panel);
     panel.style.display = 'flex';
 
-    var apiURL = 'https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + filename;
+    var apiURL = 'https://api.github.com/repos/' + EDITOR_CONFIG.repo + '/contents/' + filename;
     var headers = {
       'Authorization': 'Bearer ' + GITHUB_TOKEN,
       'Accept': 'application/vnd.github+v3+json'
     };
 
     // Step 1: Get current SHA
-    fetch(apiURL + '?ref=' + GITHUB_BRANCH, { headers: headers })
+    fetch(apiURL + '?ref=' + EDITOR_CONFIG.branch, { headers: headers })
     .then(function(r) { return r.json(); })
     .then(function(data) {
       var sha = data.sha;
@@ -217,7 +222,7 @@
           message: 'Update ' + filename + ' via site editor',
           content: btoa(unescape(encodeURIComponent(fullHTML))),
           sha: sha,
-          branch: GITHUB_BRANCH
+          branch: EDITOR_CONFIG.branch
         })
       });
     })
