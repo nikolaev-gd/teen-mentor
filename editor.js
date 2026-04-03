@@ -2,6 +2,20 @@
   // Only run when ?edit is in the URL
   if (!new URLSearchParams(location.search).has('edit')) return;
 
+  // Handle token: save from URL to localStorage, then clean URL
+  var params = new URLSearchParams(location.search);
+  if (params.has('token')) {
+    localStorage.setItem('gh_editor_token', params.get('token'));
+    params.delete('token');
+    var cleanURL = location.pathname + (params.toString() ? '?' + params.toString() : '');
+    history.replaceState(null, '', cleanURL);
+  }
+  var GITHUB_TOKEN = localStorage.getItem('gh_editor_token');
+  if (!GITHUB_TOKEN) {
+    alert('Нет токена доступа. Запросите ссылку у администратора.');
+    return;
+  }
+
   // Inject editor styles
   var style = document.createElement('style');
   style.textContent = [
@@ -87,7 +101,6 @@
     document.body.classList.remove('editor-active');
   }
 
-  var GITHUB_TOKEN = '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';
   var GITHUB_REPO = 'nikolaev-gd/teen-mentor';
   var GITHUB_BRANCH = 'main';
 
