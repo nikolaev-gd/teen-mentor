@@ -107,10 +107,17 @@
 
     toggle.textContent = 'Сохранение...';
 
-    // Capture clean HTML
+    // Temporarily remove editor elements from DOM for clean capture
+    style.remove();
+    bar.remove();
+    panel.remove();
+
     var fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
-    // Restore panel for UI
+    // Restore editor elements
+    document.head.appendChild(style);
+    document.body.appendChild(bar);
+    document.body.appendChild(panel);
     panel.style.display = 'flex';
 
     var apiURL = 'https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + filename;
@@ -152,9 +159,17 @@
     })
     .catch(function(err) {
       alert('Ошибка сохранения: ' + err.message);
-      // Restore editing mode
-      panel.style.display = 'flex';
-      startEditing();
+      // Restore UI without restarting editing (preserves originalContent)
+      toggle.textContent = 'Сохранить';
+      toggle.classList.add('editing');
+      cancel.style.display = 'block';
+      bar.style.display = 'block';
+      document.body.classList.add('editor-active');
+      var els = document.querySelectorAll(editableSelector);
+      for (var i = 0; i < els.length; i++) {
+        if (els[i].closest('button') || els[i].closest('a') || els[i].closest('.cta-buttons')) continue;
+        els[i].setAttribute('contenteditable', 'true');
+      }
     });
   }
 })();
