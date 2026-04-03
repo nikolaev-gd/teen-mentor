@@ -16,6 +16,21 @@
     return;
   }
 
+  // Add ?edit to internal links so editor mode persists on navigation
+  var links = document.querySelectorAll('a[href]');
+  for (var i = 0; i < links.length; i++) {
+    var href = links[i].getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) continue;
+    try {
+      var url = new URL(href, location.href);
+      if (url.hostname !== location.hostname) continue;
+      if (!url.searchParams.has('edit')) {
+        url.searchParams.set('edit', '');
+        links[i].setAttribute('href', url.pathname + url.search + url.hash);
+      }
+    } catch(e) { continue; }
+  }
+
   // Inject editor styles
   var style = document.createElement('style');
   style.textContent = [
