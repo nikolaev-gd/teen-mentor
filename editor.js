@@ -70,12 +70,34 @@
   var cancel = document.getElementById('editor-cancel');
   var isEditing = false;
   var originalContent = '';
+  var draftInterval = null;
+  var draftFilename = (window.location.pathname.split('/').pop() || 'index.html');
+  var draftKey = 'draft_' + draftFilename;
   function blockClicks(e) {
     var el = e.target.closest('a, button');
     if (!el) return;
     if (el.id === 'editor-toggle' || el.id === 'editor-cancel') return;
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  // Restore draft if exists
+  var savedDraft = localStorage.getItem(draftKey);
+  if (savedDraft && confirm('Найден несохранённый черновик. Восстановить?')) {
+    document.documentElement.innerHTML = savedDraft;
+    // Re-append editor elements after restoring draft
+    document.head.appendChild(style);
+    document.body.appendChild(toast);
+    panel = document.createElement('div');
+    panel.id = 'editor-panel';
+    panel.innerHTML = '<button id="editor-cancel">Отменить</button><button id="editor-toggle">Редактировать</button>';
+    document.body.appendChild(panel);
+    toggle = document.getElementById('editor-toggle');
+    cancel = document.getElementById('editor-cancel');
+    // Auto-start editing after draft restore
+    setTimeout(function() { startEditing(); }, 0);
+  } else if (savedDraft) {
+    localStorage.removeItem(draftKey);
   }
 
   // Which elements can be edited
@@ -103,6 +125,11 @@
     document.body.classList.add('editor-active');
     document.addEventListener('click', blockClicks, true);
 
+    // Start draft autosave every 3 seconds
+    draftInterval = setInterval(function() {
+      localStorage.setItem(draftKey, document.documentElement.innerHTML);
+    }, 3000);
+
     var elements = document.querySelectorAll(editableSelector);
     for (var i = 0; i < elements.length; i++) {
       if (elements[i].id === 'editor-toggle' || elements[i].id === 'editor-cancel' || elements[i].closest('#editor-panel')) continue;
@@ -112,6 +139,8 @@
 
   function cancelEditing() {
     document.querySelector('main').innerHTML = originalContent;
+    localStorage.removeItem(draftKey);
+    if (draftInterval) { clearInterval(draftInterval); draftInterval = null; }
     endEditing();
   }
 
@@ -132,6 +161,9 @@
   var GITHUB_BRANCH = 'main';
 
   function saveChanges() {
+    // Stop draft autosave
+    if (draftInterval) { clearInterval(draftInterval); draftInterval = null; }
+
     // Remove editor traces before capturing HTML
     var elements = document.querySelectorAll('[contenteditable]');
     for (var i = 0; i < elements.length; i++) {
@@ -189,6 +221,7 @@
     })
     .then(function() {
       isEditing = false;
+      localStorage.removeItem(draftKey);
       toggle.textContent = 'Сохранено!';
       toggle.classList.remove('editing');
       showToast('Сохранено! Изменения на сайте через 1\u20132 минуты');
