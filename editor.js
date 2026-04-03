@@ -73,6 +73,10 @@
   var draftInterval = null;
   var draftFilename = (window.location.pathname.split('/').pop() || 'index.html');
   var draftKey = 'draft_' + draftFilename;
+  function warnUnsaved(e) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
   function blockClicks(e) {
     var el = e.target.closest('a, button');
     if (!el) return;
@@ -124,6 +128,7 @@
     cancel.style.display = 'block';
     document.body.classList.add('editor-active');
     document.addEventListener('click', blockClicks, true);
+    window.addEventListener('beforeunload', warnUnsaved);
 
     // Start draft autosave every 3 seconds
     draftInterval = setInterval(function() {
@@ -155,6 +160,7 @@
     cancel.style.display = 'none';
     document.body.classList.remove('editor-active');
     document.removeEventListener('click', blockClicks, true);
+    window.removeEventListener('beforeunload', warnUnsaved);
   }
 
   var GITHUB_REPO = 'nikolaev-gd/teen-mentor';
@@ -221,6 +227,7 @@
     })
     .then(function() {
       isEditing = false;
+      window.removeEventListener('beforeunload', warnUnsaved);
       localStorage.removeItem(draftKey);
       toggle.textContent = 'Сохранено!';
       toggle.classList.remove('editing');
