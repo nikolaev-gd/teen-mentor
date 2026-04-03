@@ -64,9 +64,16 @@
   var cancel = document.getElementById('editor-cancel');
   var isEditing = false;
   var originalContent = '';
+  function blockClicks(e) {
+    var el = e.target.closest('a, button');
+    if (!el) return;
+    if (el.id === 'editor-toggle' || el.id === 'editor-cancel') return;
+    e.preventDefault();
+    e.stopPropagation();
+  }
 
   // Which elements can be edited
-  var editableSelector = 'main h1, main h2, main h3, main p, main li, main .audience-role, main .audience-note-tail';
+  var editableSelector = 'h1, h2, h3, p, li, a, button, span, .audience-role, .audience-note-tail';
 
   toggle.addEventListener('click', function() {
     if (!isEditing) {
@@ -89,11 +96,12 @@
     cancel.style.display = 'block';
     bar.style.display = 'block';
     document.body.classList.add('editor-active');
+    document.addEventListener('click', blockClicks, true);
 
     var elements = document.querySelectorAll(editableSelector);
     for (var i = 0; i < elements.length; i++) {
       // Skip interactive elements
-      if (elements[i].closest('button') || elements[i].closest('a') || elements[i].closest('.cta-buttons')) continue;
+      if (elements[i].id === 'editor-toggle' || elements[i].id === 'editor-cancel' || elements[i].closest('#editor-panel') || elements[i].closest('#editor-bar')) continue;
       elements[i].setAttribute('contenteditable', 'true');
     }
   }
@@ -114,6 +122,7 @@
     cancel.style.display = 'none';
     bar.style.display = 'none';
     document.body.classList.remove('editor-active');
+    document.removeEventListener('click', blockClicks, true);
   }
 
   var GITHUB_REPO = 'nikolaev-gd/teen-mentor';
