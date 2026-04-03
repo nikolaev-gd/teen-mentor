@@ -78,6 +78,7 @@
   var cancel = document.getElementById('editor-cancel');
   var isEditing = false;
   var originalContent = '';
+  var lastKnownSHA = null;
   var draftInterval = null;
   var draftFilename = (window.location.pathname.split('/').pop() || 'index.html');
   var draftKey = 'draft_' + draftFilename;
@@ -208,12 +209,14 @@
       'Accept': 'application/vnd.github+v3+json'
     };
 
-    // Step 1: Get current SHA
-    fetch(apiURL + '?ref=' + EDITOR_CONFIG.branch, { headers: headers })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      var sha = data.sha;
+    // Step 1: Get current SHA (skip if we already have it)
+    var shaPromise = lastKnownSHA
+      ? Promise.resolve(lastKnownSHA)
+      : fetch(apiURL + '?ref=' + EDITOR_CONFIG.branch, { headers: headers })
+          .then(function(r) { return r.json(); })
+          .then(function(data) { return data.sha; });
 
+    shaPromise.then(function(sha) {
       // Step 2: PUT updated file
       return fetch(apiURL, {
         method: 'PUT',
@@ -230,7 +233,8 @@
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     })
-    .then(function() {
+    .then(function(data) {
+      lastKnownSHA = data.content.sha;
       localStorage.removeItem(draftKey);
       endEditing();
       toggle.textContent = 'Сохранено!';
