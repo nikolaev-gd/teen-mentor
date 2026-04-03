@@ -43,16 +43,9 @@
     '#editor-cancel { background:#fff; color:#666; border:1px solid #ddd!important; display:none; }',
     '#editor-cancel:hover { background:#f5f5f5; }',
     '.editor-active [contenteditable="true"] { outline:2px dashed rgba(45,125,58,.3); outline-offset:4px; border-radius:4px; min-height:1em; }',
-    '.editor-active [contenteditable="true"]:focus { outline:2px solid rgba(45,125,58,.6); background:rgba(45,125,58,.03); }',
-    '#editor-bar { display:none; position:fixed; top:0; left:0; right:0; background:#2d7d3a; color:#fff; padding:8px 16px; font-size:13px; font-family:Inter,sans-serif; z-index:10001; text-align:center; }'
+    '.editor-active [contenteditable="true"]:focus { outline:2px solid rgba(45,125,58,.6); background:rgba(45,125,58,.03); }'
   ].join('\n');
   document.head.appendChild(style);
-
-  // Top info bar
-  var bar = document.createElement('div');
-  bar.id = 'editor-bar';
-  bar.textContent = 'Режим редактирования — нажмите на любой текст, чтобы изменить его';
-  document.body.appendChild(bar);
 
   // Floating button panel
   var panel = document.createElement('div');
@@ -94,14 +87,12 @@
     toggle.textContent = 'Сохранить';
     toggle.classList.add('editing');
     cancel.style.display = 'block';
-    bar.style.display = 'block';
     document.body.classList.add('editor-active');
     document.addEventListener('click', blockClicks, true);
 
     var elements = document.querySelectorAll(editableSelector);
     for (var i = 0; i < elements.length; i++) {
-      // Skip interactive elements
-      if (elements[i].id === 'editor-toggle' || elements[i].id === 'editor-cancel' || elements[i].closest('#editor-panel') || elements[i].closest('#editor-bar')) continue;
+      if (elements[i].id === 'editor-toggle' || elements[i].id === 'editor-cancel' || elements[i].closest('#editor-panel')) continue;
       elements[i].setAttribute('contenteditable', 'true');
     }
   }
@@ -120,7 +111,6 @@
     toggle.textContent = 'Редактировать';
     toggle.classList.remove('editing');
     cancel.style.display = 'none';
-    bar.style.display = 'none';
     document.body.classList.remove('editor-active');
     document.removeEventListener('click', blockClicks, true);
   }
@@ -135,7 +125,6 @@
       elements[i].removeAttribute('contenteditable');
     }
     document.body.classList.remove('editor-active');
-    bar.style.display = 'none';
     cancel.style.display = 'none';
     panel.style.display = 'none';
 
@@ -146,14 +135,12 @@
 
     // Temporarily remove editor elements from DOM for clean capture
     style.remove();
-    bar.remove();
     panel.remove();
 
     var fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
     // Restore editor elements
     document.head.appendChild(style);
-    document.body.appendChild(bar);
     document.body.appendChild(panel);
     panel.style.display = 'flex';
 
@@ -200,7 +187,6 @@
       toggle.textContent = 'Сохранить';
       toggle.classList.add('editing');
       cancel.style.display = 'block';
-      bar.style.display = 'block';
       document.body.classList.add('editor-active');
       var els = document.querySelectorAll(editableSelector);
       for (var i = 0; i < els.length; i++) {
