@@ -73,7 +73,7 @@
   }
 
   // Which elements can be edited
-  var editableSelector = 'h1, h2, h3, p, li, a, button, span, .audience-role, .audience-note-tail';
+  var editableSelector = 'h1, h2, h3, p, li, a, button, span, .audience-item, .audience-role, .audience-note-tail';
 
   toggle.addEventListener('click', function() {
     if (!isEditing) {
