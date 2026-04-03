@@ -43,9 +43,22 @@
     '#editor-cancel { background:#fff; color:#666; border:1px solid #ddd!important; display:none; }',
     '#editor-cancel:hover { background:#f5f5f5; }',
     '.editor-active [contenteditable="true"] { outline:2px dashed rgba(45,125,58,.3); outline-offset:4px; border-radius:4px; min-height:1em; }',
-    '.editor-active [contenteditable="true"]:focus { outline:2px solid rgba(45,125,58,.6); background:rgba(45,125,58,.03); }'
+    '.editor-active [contenteditable="true"]:focus { outline:2px solid rgba(45,125,58,.6); background:rgba(45,125,58,.03); }',
+    '#editor-toast { position:fixed; bottom:80px; right:20px; z-index:10000; padding:12px 20px; border-radius:8px; font-size:14px; font-family:Inter,sans-serif; color:#fff; background:#2d7d3a; box-shadow:0 2px 8px rgba(0,0,0,.15); opacity:0; transition:opacity .3s; pointer-events:none; }'
   ].join('\n');
   document.head.appendChild(style);
+
+  // Toast notification
+  var toast = document.createElement('div');
+  toast.id = 'editor-toast';
+  document.body.appendChild(toast);
+
+  function showToast(text, isError) {
+    toast.textContent = text;
+    toast.style.background = isError ? '#d32f2f' : '#2d7d3a';
+    toast.style.opacity = '1';
+    setTimeout(function() { toast.style.opacity = '0'; }, 3000);
+  }
 
   // Floating button panel
   var panel = document.createElement('div');
@@ -136,11 +149,13 @@
     // Temporarily remove editor elements from DOM for clean capture
     style.remove();
     panel.remove();
+    toast.remove();
 
     var fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
     // Restore editor elements
     document.head.appendChild(style);
+    document.body.appendChild(toast);
     document.body.appendChild(panel);
     panel.style.display = 'flex';
 
@@ -176,13 +191,13 @@
       isEditing = false;
       toggle.textContent = 'Сохранено!';
       toggle.classList.remove('editing');
-      alert('Сохранено! Изменения появятся на сайте через 1-2 минуты.');
+      showToast('Сохранено! Изменения на сайте через 1\u20132 минуты');
       setTimeout(function() {
         toggle.textContent = 'Редактировать';
       }, 2000);
     })
     .catch(function(err) {
-      alert('Ошибка сохранения: ' + err.message);
+      showToast('Ошибка сохранения: ' + err.message, true);
       // Restore UI without restarting editing (preserves originalContent)
       toggle.textContent = 'Сохранить';
       toggle.classList.add('editing');
