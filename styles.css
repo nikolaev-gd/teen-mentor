@@ -1150,6 +1150,7 @@ strong {
 
   .header {
     padding: 0 max(2.5rem, calc((100% - 1200px) / 2));
+    gap: 2rem;
   }
 
   .header-brand {
@@ -1180,10 +1181,6 @@ strong {
 
   .nav-desktop a {
     font-size: 0.85rem;
-  }
-
-  .header-brand {
-    flex: 0 1 auto;
   }
 
   .menu-toggle {
