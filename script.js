@@ -9,12 +9,16 @@
   window.addEventListener('scroll', function() {
     if (!ticking) {
       requestAnimationFrame(function() {
+        // На десктопе шапка всегда видна
+        if (window.innerWidth >= 1024) {
+          header.classList.remove('header--hidden');
+          ticking = false;
+          return;
+        }
         var y = window.scrollY;
         if (y > lastY && y > 60) {
-          // Scrolling down & past threshold
           header.classList.add('header--hidden');
         } else {
-          // Scrolling up
           header.classList.remove('header--hidden');
         }
         lastY = y;
