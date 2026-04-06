@@ -2998,7 +2998,7 @@ strong {
 
 .blog-card__image {
   width: 100%;
-  height: 44vh;
+  aspect-ratio: 3 / 4;
   background: var(--bg-alt);
   border-radius: 6px;
   margin-bottom: 1.75rem;
@@ -3050,7 +3050,7 @@ strong {
   }
 
   .blog-card__image {
-    height: 240px;
+    aspect-ratio: 3 / 4;
   }
 
   .blog-card__title {
@@ -3069,7 +3069,7 @@ strong {
   }
 
   .blog-card__image {
-    height: 44vh;
+    aspect-ratio: 3 / 4;
   }
 
   .blog-card__title {
