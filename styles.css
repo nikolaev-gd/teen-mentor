@@ -473,13 +473,27 @@ strong {
   border-top: 1px solid var(--border);
 }
 
-.speaking p {
+.speaking-photo {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.speaking-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.speaking-text p {
   font-size: 1.0625rem;
   line-height: 1.8;
   color: var(--text-secondary);
 }
 
-.speaking p:first-child {
+.speaking-text p:first-child {
   font-family: var(--font-serif);
   font-size: 1.1875rem;
   color: var(--text);
@@ -1413,7 +1427,11 @@ strong {
     padding: 3rem 0;
   }
 
-  .speaking p:first-child {
+  .speaking-photo {
+    display: none;
+  }
+
+  .speaking-text p:first-child {
     font-size: 1.375rem;
   }
 
@@ -1717,13 +1735,28 @@ strong {
     border-radius: 18px;
     border: 1px solid #3f352d;
     background: linear-gradient(160deg, #2b2520 0%, #1f1a16 100%);
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+    overflow: visible;
   }
 
-  .home-page .speaking p {
+  .home-page .speaking-photo {
+    display: block;
+    width: 200px;
+    height: 240px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    margin: -3rem 0;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .home-page .speaking-text p {
     color: rgba(248, 242, 234, 0.86);
   }
 
-  .home-page .speaking p:first-child {
+  .home-page .speaking-text p:first-child {
     color: #fff;
     font-size: 1.5rem;
     margin-bottom: 0.9rem;
@@ -1791,6 +1824,7 @@ strong {
 
   .home-page .speaking {
     padding: 2.7rem 2.9rem;
+    gap: 2.8rem;
   }
 
   .home-page .cta {
@@ -2028,10 +2062,29 @@ strong {
   }
 
   .home-page .speaking {
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(160deg, #2b2520 0%, #1f1a16 100%);
+    border-color: #3f352d;
+  }
+
+  .home-page .speaking-photo {
+    width: 100%;
+    height: 200px;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  .home-page .speaking-text {
     padding: 1.35rem 1rem;
   }
 
-  .home-page .speaking p:first-child {
+  .home-page .speaking-text p {
+    color: rgba(248, 242, 234, 0.86);
+  }
+
+  .home-page .speaking-text p:first-child {
+    color: #fff;
     margin-bottom: 0.6rem;
   }
 
