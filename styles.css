@@ -1801,7 +1801,7 @@ strong {
   }
 
   .home-page .speaking-text p {
-    color: var(--dark-text-soft);
+    color: var(--text-secondary);
   }
 
   .home-page .speaking-text p:first-child {
@@ -2128,7 +2128,7 @@ strong {
   }
 
   .home-page .speaking-text p {
-    color: var(--dark-text-soft);
+    color: var(--text-secondary);
   }
 
   .home-page .speaking-text p:first-child {
