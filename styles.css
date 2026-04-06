@@ -1175,6 +1175,15 @@ strong {
 
   .nav-desktop {
     display: flex;
+    gap: 1.1rem;
+  }
+
+  .nav-desktop a {
+    font-size: 0.85rem;
+  }
+
+  .header-brand {
+    flex: 0 1 auto;
   }
 
   .menu-toggle {
