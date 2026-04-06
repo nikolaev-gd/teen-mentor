@@ -1574,6 +1574,7 @@ strong {
     border: 1px solid #e7dfd6;
     box-shadow: 0 18px 48px rgba(26, 24, 20, 0.08);
     background: #fff;
+    flex-direction: row-reverse;
   }
 
   .home-page .hero-photo {
