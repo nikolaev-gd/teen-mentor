@@ -63,4 +63,9 @@
   if (root) {
     root.innerHTML = html;
   }
+
+  // Load editor.js dynamically
+  var editorScript = document.createElement('script');
+  editorScript.src = prefix + 'editor.js';
+  document.body.appendChild(editorScript);
 })();
