@@ -49,6 +49,10 @@
   /* Stamp/brand */
   --stamp: #7A2E3A;
 
+  /* Modal close */
+  --modal-close-bg: rgba(250, 249, 247, 0.7);
+  --modal-close-bg-hover: rgba(250, 249, 247, 0.9);
+
   /* Shadow base (for rgba) */
   --shadow-rgb: 26, 24, 20;
   --stamp-rgb: 122, 46, 58;
@@ -824,14 +828,14 @@ strong {
   line-height: 1;
   color: var(--text-secondary);
   border-radius: 50%;
-  background: rgba(250, 249, 247, 0.7);
+  background: var(--modal-close-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: background var(--transition), color var(--transition);
 }
 
 .modal-close:hover {
-  background: rgba(250, 249, 247, 0.9);
+  background: var(--modal-close-bg-hover);
   color: var(--text);
 }
 
@@ -3201,4 +3205,47 @@ strong {
   padding: 2rem 0 1rem;
   border-top: 1px solid var(--border);
   margin-top: 2rem;
+}
+
+/* ===========================
+   DARK MODE
+   =========================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1C1B19;
+    --bg-alt: #222120;
+    --surface: #26251F;
+    --text: #E8E6E1;
+    --text-secondary: #9C9890;
+    --text-muted: #8A8A8A;
+    --accent: #E8E6E1;
+    --accent-hover: #D4D2CC;
+    --border: #3A3832;
+    --border-light: #302F2A;
+
+    --surface-warm: #2A2924;
+    --tile-border: #3A3832;
+    --page-glow: #26251F;
+    --beige: #3A3832;
+    --tan: #6E6B65;
+    --tan-light: #4A4840;
+    --gold: #8B7D6B;
+    --dark-bg-start: #16150F;
+    --dark-bg-end: #111010;
+    --dark-border: #3A3832;
+    --dark-text-soft: rgba(232, 230, 225, 0.86);
+    --brown: #A0A0A0;
+    --brown-text: #9C9890;
+    --brown-dark: #A0A0A0;
+    --muted-warm: #6E6B65;
+    --stamp: #9B4A56;
+    --shadow-rgb: 0, 0, 0;
+    --stamp-rgb: 155, 74, 86;
+    --modal-close-bg: rgba(30, 30, 30, 0.7);
+    --modal-close-bg-hover: rgba(30, 30, 30, 0.9);
+  }
+
+  .home-page .speaking-text p:first-child {
+    color: #E8E6E1;
+  }
 }
