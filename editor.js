@@ -7,7 +7,7 @@
   var EDITOR_CONFIG = {
     repo: 'nikolaev-gd/teen-mentor',
     branch: 'main',
-    editableSelector: 'h1, h2, h3, p, li, a, button, span, .audience-item, .audience-role, .audience-note-tail'
+    editableSelector: 'h1, h2, h3, h4, h5, h6, p, li, a, button, span, td, th, label, figcaption, blockquote, dt, dd, div:not(:has(*))'
   };
 
   // Handle token: save from URL to localStorage, then clean URL
@@ -113,6 +113,9 @@
     localStorage.removeItem(draftKey);
   }
 
+  // Detect blog pages (texts/*.html)
+  var isBlogPage = location.pathname.indexOf('/texts/') !== -1;
+
   // Which elements can be edited
   var editableSelector = EDITOR_CONFIG.editableSelector;
 
@@ -144,10 +147,19 @@
       localStorage.setItem(draftKey, document.documentElement.innerHTML);
     }, 3000);
 
-    var elements = document.querySelectorAll(editableSelector);
-    for (var i = 0; i < elements.length; i++) {
-      if (elements[i].id === 'editor-toggle' || elements[i].id === 'editor-cancel' || elements[i].closest('#editor-panel')) continue;
-      elements[i].setAttribute('contenteditable', 'true');
+    if (isBlogPage) {
+      // Blog: make entire .content-section one editable block
+      var sections = document.querySelectorAll('.content-section');
+      for (var j = 0; j < sections.length; j++) {
+        sections[j].setAttribute('contenteditable', 'true');
+      }
+    } else {
+      // Regular pages: each element is editable separately
+      var elements = document.querySelectorAll(editableSelector);
+      for (var i = 0; i < elements.length; i++) {
+        if (elements[i].id === 'editor-toggle' || elements[i].id === 'editor-cancel' || elements[i].closest('#editor-panel')) continue;
+        elements[i].setAttribute('contenteditable', 'true');
+      }
     }
   }
 
@@ -250,10 +262,17 @@
       toggle.classList.add('editing');
       cancel.style.display = 'block';
       document.body.classList.add('editor-active');
-      var els = document.querySelectorAll(editableSelector);
-      for (var i = 0; i < els.length; i++) {
-        if (els[i].closest('button') || els[i].closest('a') || els[i].closest('.cta-buttons')) continue;
-        els[i].setAttribute('contenteditable', 'true');
+      if (isBlogPage) {
+        var sections = document.querySelectorAll('.content-section');
+        for (var j = 0; j < sections.length; j++) {
+          sections[j].setAttribute('contenteditable', 'true');
+        }
+      } else {
+        var els = document.querySelectorAll(editableSelector);
+        for (var i = 0; i < els.length; i++) {
+          if (els[i].id === 'editor-toggle' || els[i].id === 'editor-cancel' || els[i].closest('#editor-panel')) continue;
+          els[i].setAttribute('contenteditable', 'true');
+        }
       }
     });
   }
