@@ -15,6 +15,7 @@ CLAUDE.md
 
 # Исходные тексты
 *.md
+!LESSONS.md
 
 # Временные файлы
 _to_delete/
