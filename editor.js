@@ -207,6 +207,15 @@
     panel.remove();
     toast.remove();
 
+    // Яндекс.Метрика подгружает tag_phono.js в <head> уже после загрузки страницы.
+    // Если записать его в исходник, при следующем открытии Метрика добавит ещё один —
+    // и с каждым сохранением копий становится больше. Скрипт уже отработал,
+    // так что удаление тега ни на что не влияет.
+    var injected = document.querySelectorAll('script[src*="mc.yandex.ru/metrika/tag_phono"]');
+    for (var n = 0; n < injected.length; n++) {
+      injected[n].remove();
+    }
+
     var fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
     // Restore editor elements
