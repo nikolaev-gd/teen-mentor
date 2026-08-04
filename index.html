@@ -27,7 +27,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Spline+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="(min-width:960px)">
   <!-- Yandex.Metrika counter -->
   <script async="" src="https://mc.yandex.ru/metrika/tag.js?id=106335095"></script><script type="text/javascript">
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -73,70 +72,7 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 .pg img{display:block;max-width:100%}
 .pg a{text-decoration:none;color:inherit}
 .pg svg{display:block}
-.wrap{max-width:600px;margin:0 auto}
-/* ===== Десктоп (>=960px): полноэкранный лендинг — сплит-hero, полосы секций, сетки карточек. Мобильная вёрстка не затронута ===== */
-@media (min-width:960px){
-.wrap{max-width:none;padding:0}
-.pg{font-size:17px!important;line-height:1.68!important}
-.pg,.pg *{font-family:'Golos Text','Spline Sans',system-ui,sans-serif!important}
-.content{display:block!important;padding:0!important}
-.content h2{font-size:36px!important}
-/* Hero: заголовок и подводка слева, портрет справа, на всю ширину */
-.hero{display:grid;grid-template-columns:1.08fr .92fr;grid-template-areas:"title media" "intro media";column-gap:72px;align-items:center;padding:88px max(64px,calc(50% - 570px)) 96px;background:radial-gradient(1000px 560px at 80% 0%,rgba(95,191,141,.09),rgba(11,13,12,0) 62%)}
-.hero-media{grid-area:media}
-.hero-media img{border-radius:24px;border:1px solid rgba(255,255,255,.07);max-height:600px;object-fit:cover;object-position:50% 18%}
-.hero-media>div{display:none}
-.hero-title{grid-area:title;align-self:end;padding:0!important}
-.hero-title h1{font-size:54px!important;line-height:1.07!important;margin:0!important}
-.hero-intro{grid-area:intro;align-self:start;padding:28px 0 0!important}
-/* Цитата-боль */
-.sec-quote{margin:72px auto 0;width:calc(100% - 128px);max-width:880px;padding:30px 36px!important;border-radius:12px!important}
-.sec-quote p{font-size:20px!important;line-height:1.55!important}
-/* Центрированные заголовки секций */
-.sec-what>div:first-child,.sec-my>div:first-child,.sec-team>div:first-child,.sec-results>div:first-child,.sec-plan>div:first-child,.sec-money>div:first-child{text-align:center}
-.sec-what>div:first-child span,.sec-my>div:first-child span,.sec-team>div:first-child span,.sec-results>div:first-child span,.sec-plan>div:first-child span,.sec-money>div:first-child span{margin:0 auto 18px!important;width:40px!important}
-/* Итак, что мы делаем + три карточки в ряд */
-.sec-what{margin:104px auto 0;max-width:688px;padding:0 24px}
-.sec-what>p{text-align:center}
-.sec-cards{margin:48px auto 0;max-width:1160px;padding:0 32px;display:grid!important;grid-template-columns:.95fr 1.2fr 1.05fr;gap:20px!important}
-.sec-cards>div{padding:28px 28px 32px!important;border-radius:18px!important}
-.sec-cards h3{font-size:22px!important}
-.sec-cards p{font-size:16px!important;line-height:1.62!important}
-/* Что делаю я — полоса на всю ширину */
-.sec-my{margin-top:112px;padding:88px max(64px,calc(50% - 360px));background:#0f1418}
-/* Кто ведёт систему — три роли карточками */
-.sec-team{margin:112px auto 0;max-width:1080px;padding:0 32px;width:100%}
-.sec-team>p{max-width:720px;margin:0 auto;width:100%}
-.sec-team>div:nth-of-type(2){border-left:0!important;padding-left:0!important;margin:8px 0 0!important;display:grid!important;grid-template-columns:repeat(3,1fr);gap:20px!important}
-.sec-team>div:nth-of-type(2)>div{background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px}
-.sec-team>div:nth-of-type(2)>div>span{position:static!important;display:block;margin-bottom:14px}
-.sec-team>div:nth-of-type(2) p{font-size:16px!important}
-/* Результат — полоса, чек-карточки в ряд */
-.sec-results{margin-top:112px;padding:88px max(64px,calc(50% - 580px));background:#0f1418}
-.sec-results>p{max-width:720px;margin:0 auto;width:100%}
-.checks{display:grid!important;grid-template-columns:repeat(3,1fr);gap:18px!important}
-.checks>div{flex-direction:column!important;gap:12px!important;padding:24px!important;border-radius:16px!important}
-.checks svg{width:22px!important;height:22px!important}
-.checks p{font-size:16px!important}
-.sec-results>p:last-child{max-width:800px;text-align:center;font-size:20px!important}
-/* План — шаги в строку */
-.sec-plan{margin:112px auto 0;max-width:1000px;padding:0 32px;width:100%}
-.sec-plan>p{max-width:720px;margin:0 auto;width:100%}
-.plan-steps{display:grid!important;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px!important;align-items:stretch;margin:10px 0 6px}
-.plan-steps>div:nth-child(odd){padding:20px 22px!important;border-radius:14px!important}
-.plan-steps>div:nth-child(even){display:flex;align-items:center;justify-content:center}
-.plan-steps>div:nth-child(even) svg{transform:rotate(-90deg)}
-/* Деньги */
-.sec-money{margin:112px auto 0;width:calc(100% - 128px);max-width:840px;padding:52px 56px!important;border-radius:24px!important}
-/* Финал — полоса: портрет слева, контакты сеткой */
-.outro{margin-top:112px;background:#0f1418;display:grid;grid-template-columns:400px 1fr;gap:72px;align-items:center;padding:96px max(64px,calc(50% - 520px))}
-.outro-media{margin:0!important}
-.outro-media img{height:480px;object-fit:cover;object-position:50% 20%;border-radius:24px;border:1px solid rgba(255,255,255,.07)}
-.outro-media>div{display:none}
-.outro-body{padding:0!important;gap:22px!important}
-.outro-body>div:first-child>p:first-child{font-size:28px!important;line-height:1.25!important}
-.contacts{display:grid!important;grid-template-columns:1fr 1fr;gap:12px!important}
-}
+.wrap{max-width:700px;margin:0 auto}
 </style>
 </head>
 <body class="">
@@ -144,36 +80,34 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 <div class="wrap">
 <div class="pg" style="font-family:'Spline Sans',system-ui,sans-serif;color:#c8ccc4;background:#0b0d0c;line-height:1.62;font-size:16px">
 
-<div class="hero">
-<div class="hero-media" style="position:relative">
+<div style="position:relative">
 <img src="portrait-1.jpeg" alt="Геннадий Николаев" style="width:100%">
 <div style="position:absolute;left:0;right:0;bottom:-1px;height:52%;background:linear-gradient(to bottom,rgba(11,13,12,0),#0b0d0c)"></div>
 </div>
 
-<div class="hero-title" style="padding:14px 24px 0">
+<div style="padding:14px 24px 0">
 
 <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:37px;line-height:1.08;letter-spacing:-.02em;margin-top:14px;color:#fff">Как помочь подростку подготовиться к&nbsp;будущему?</h1>
 </div>
 
-<div class="hero-intro" style="display:flex;flex-direction:column;gap:15px;padding:32px 24px 2px">
+<div style="padding:32px 24px 0;display:flex;flex-direction:column;gap:34px">
+
+<div style="display:flex;flex-direction:column;gap:15px">
 <p style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:21px;line-height:1.3;color:#fff">Привет, меня зовут Геннадий Николаев.</p>
 <p>Я помогаю семье максимально эффективно пройти путь от школы к профессии. Цель одна – выжать максимум из потенциала подростка, при этом чтобы попутно он научился кайфовать от процесса саморазвития, а родители были поддержкой и опорой, а не надзирателями.<br></p>
 <p style="color:#949c95">Около десяти лет я сопровождаю подростков — от средней школы до выпуска из университета и первых профессиональных шагов. Ниже я хочу поделиться своим опытом и показать, чем могу быть полезен.</p>
 </div>
-</div>
 
-<div class="content" style="padding:32px 24px 0;display:flex;flex-direction:column;gap:34px">
-
-<div class="sec-quote" style="background:#14181c;border-left:3px solid #5FBF8D;border-radius:6px;padding:18px 20px">
+<div style="background:#14181c;border-left:3px solid #5FBF8D;border-radius:6px;padding:18px 20px">
 <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1.42;color:#e2e6df">Обычно ко мне приходят, когда подросток в 9–10 классе: впереди ОГЭ, ЕГЭ, поступление. <br><br>При этом, учёбу пытаются вытянуть количеством — больше часов, больше репетиторов, — а отдача не растёт.</p>
 </div>
 
-<div class="sec-what" style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-direction:column;gap:14px">
 <div><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">Итак, что мы делаем</h2></div>
 <p>Мы собираем вокруг подростка систему, в которой он эффективно учится и развивается как самостоятельный человек. Работа идёт по трём линиям.</p>
 </div>
 
-<div class="sec-cards" style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-direction:column;gap:12px">
 <div style="background:#14181c;border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:22px 20px;display:flex;flex-direction:column;gap:11px">
 <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;color:#5FBF8D;letter-spacing:.06em">01</span><h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;color:#fff">Учёба</h3></div>
 <p style="color:#c8ccc4">Дело обычно не в количестве занятий, а в том, как выстроен процесс: при правильном подходе тот же материал осваивается заметно быстрее и удерживается к экзамену.</p>
@@ -190,14 +124,14 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 </div>
 </div>
 
-<div class="sec-my" style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-direction:column;gap:14px">
 <div><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">Что делаю я</h2></div>
 <p>Я хорошо разбираюсь в том, как формируется мотивация, умею планировать и организовывать. Через эти навыки я и выстраиваю систему: под каждую линию мы подбираем специалистов и выстраиваем их работу так, чтобы она работала в копилку мотивации подростка.&nbsp;</p>
 <p style="color:#949c95">За учёбу отвечают специалисты по техникам работы с информацией и предметники — а рутину подростка складываем так, чтобы ему было комфортно учиться. За профессиональные пробы — тьютор и сами пробы. Для родителя — небольшие мастер-классы, где понемногу учимся эффективно общаться с подростком.&nbsp;</p>
 <p>Обычно на все уходит&nbsp;&nbsp;<span style="color:#8FC7A8">четыре-шесть месяцев</span>. Моя задача за это время — собрать команду, запустить её работу и выйти.</p>
 </div>
 
-<div class="sec-team" style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:16px">
 <div><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">Кто ведёт систему после меня</h2></div>
 <p>После моего выхода систему держат специалисты, которых я подобрал и ввёл в работу. Обычно это три роли.</p>
 <div style="border-left:1px solid rgba(95,191,141,.3);margin-left:6px;padding-left:24px;display:flex;flex-direction:column;gap:18px">
@@ -208,10 +142,10 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 <p style="color:#949c95">Важно понимать: это не трое на постоянку. Кого-то подключаем на месяц, кого-то на пару встреч, а кого-то и на полгода-год. И все они нужны ровно до тех пор, пока подросток не станет самостоятельным и не перестанет в них нуждаться.</p>
 </div>
 
-<div class="sec-results" style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:16px">
 <div><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">Как отслеживаем результат</h2></div>
 <p>Работа не идёт вслепую. В начале снимаем срез по всем трём линиям: где подросток по учёбе, по самостоятельности, что с ролью родителя. Дальше сверяемся примерно каждые два месяца: что сдвинулось, что буксует, что поправить в подходе. К концу проходим по тем же точкам и смотрим, что изменилось.</p>
-<div class="checks" style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;flex-direction:column;gap:10px">
 <div style="display:flex;gap:12px;align-items:flex-start;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px"><span style="flex:none;color:#5FBF8D;margin-top:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M20 6 9 17l-5-5"></path></svg></span><p style="color:#c8ccc4"><span style="color:#fff;font-weight:600">По учёбе:</span> успеваемость по нужным предметам выросла, подросток сам организует свою учёбу.</p></div>
 <div style="display:flex;gap:12px;align-items:flex-start;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px"><span style="flex:none;color:#5FBF8D;margin-top:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M20 6 9 17l-5-5"></path></svg></span><p style="color:#c8ccc4"><span style="color:#fff;font-weight:600">По самостоятельности:</span> появились собственные цели, есть первое доведённое до конца своё дело.</p></div>
 <div style="display:flex;gap:12px;align-items:flex-start;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px"><span style="flex:none;color:#5FBF8D;margin-top:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M20 6 9 17l-5-5"></path></svg></span><p style="color:#c8ccc4"><span style="color:#fff;font-weight:600">По родителю:</span> понятная роль в системе, меньше стычек дома.</p></div>
@@ -219,9 +153,9 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1.4;color:#8FC7A8">Это и есть точка моего выхода: по всем трём линиям есть результат, система работает автономно. А родитель эффективно взаимодействует с ребенком.</p>
 </div>
 
-<div class="sec-plan" style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:16px">
 <div><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">План развития</h2></div>
-<div class="plan-steps" style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;flex-direction:column;gap:8px">
 <div style="display:flex;align-items:center;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:rgba(95,191,141,.16);color:#8FC7A8;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center">1</span><span style="color:#fff;font-weight:500">Образ будущего</span></div>
 <div style="text-align:center;color:#41504a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;margin:0 auto"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></div>
 <div style="display:flex;align-items:center;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:rgba(95,191,141,.16);color:#8FC7A8;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center">2</span><span style="color:#fff;font-weight:500">Цель на ближайшие пару лет</span></div>
@@ -232,26 +166,25 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 <p style="color:#949c95">Отдельно даём инструменты, чтобы пересматривать и перестраивать план: подросток растёт, интересы уточняются, и план меняется вместе с ним, а не устаревает.</p>
 </div>
 
-<div class="sec-money" style="background:linear-gradient(180deg,#15191d,#0f130f);border:1px solid rgba(95,191,141,.22);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;gap:14px">
+<div style="background:linear-gradient(180deg,#15191d,#0f130f);border:1px solid rgba(95,191,141,.22);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;gap:14px">
 <div><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">Деньги</h2></div>
 <p style="color:#c8ccc4">Порядок такой. Моя работа — <span style="color:#8FC7A8;font-weight:600">100 000 рублей в месяц</span> на время проекта. Сверх этого закладываем <span style="color:#8FC7A8;font-weight:600">50–100 тысяч в месяц</span> на специалистов, пока собираем и настраиваем систему. После моего выхода система обходится примерно в <span style="color:#8FC7A8;font-weight:600">80–100 тысяч в месяц</span> напрямую специалистам, уже без меня.<br></p><div><span style="color: rgb(148, 156, 149);">К примеру. Мы начинаем работу и закладываемся на первый месяц. Вы переводите 100 тысяч — и я запускаю процесс: подбираем первых специалистов, делаем первые срезы, первые планы. Через месяц сверяемся. Если работа идёт эффективно — второй месяц так же: те же 100 тысяч за меня, и так на протяжении всего проекта.&nbsp;<br></span></div><div>Обычно моя работа занимает 4–6 месяцев. Параллельно я подключаю специалистов — это репетиторы, тьюторы и другие специалисты — на этом наладочном этапе на них уходит от 50 до 100 тысяч в месяц. Дальше, как я писал выше, стоимость зависит от собранной системы: может быть 50 тысяч, может 100.</div><p></p>
 </div>
 
 </div>
 
-<div class="outro">
-<div class="outro-media" style="position:relative;margin-top:36px">
+<div style="position:relative;margin-top:36px">
 <div style="position:absolute;left:0;right:0;top:-1px;height:32%;background:linear-gradient(to top,rgba(11,13,12,0),#0b0d0c);z-index:1"></div>
 <img src="portrait-2.jpeg" alt="Геннадий Николаев" style="width:100%">
 </div>
 
-<div class="outro-body" style="padding:34px 24px 42px;display:flex;flex-direction:column;gap:22px">
+<div style="padding:34px 24px 42px;display:flex;flex-direction:column;gap:22px">
 <div style="display:flex;flex-direction:column;gap:13px">
 <p style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:21px;line-height:1.32;color:#fff">Если есть вопросы — напишите, начнем обсуждение. Можем связаться минут на 30 и познакомиться.</p>
 <p style="color:#949c95">Перед стартом в любом случае обсудим вашу ситуацию – работа начинается с разговора, а не с оплаты.</p>
 </div>
 
-<div class="contacts" style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-direction:column;gap:12px">
 <a href="mailto:nikolaev.gd@gmail.com" style="display:flex;align-items:center;gap:16px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px 18px">
 <span style="flex:none;width:48px;height:48px;border-radius:50%;background:rgba(95,191,141,.14);color:#8FC7A8;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 6 10 7 10-7"></path></svg></span>
 <span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font:600 10px/1 'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.16em;color:#7c847d">Почта</span><span style="font-weight:600;font-size:16px;color:#fff;overflow:hidden;text-overflow:ellipsis">nikolaev.gd@gmail.com</span></span>
@@ -270,6 +203,19 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 </a>
 </div>
 </div>
+
+<div class="sec-more" style="padding:0 24px 46px;display:flex;flex-direction:column;gap:16px">
+<div style="border-top:1px solid rgba(255,255,255,.07);padding-top:40px"><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">Мои остальные продукты</h2></div>
+<p style="color:#949c95">Кроме проекта, описанного выше, я веду отдельные направления: карьерный коучинг со взрослыми, тьюторство, сопровождение в учёбе и работу с родителями. Всё это собрано в отдельном разделе вместе с текстами.</p>
+<div class="more-links" style="display:flex;flex-direction:column;gap:10px">
+<a href="products/career.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Карьерный коучинг</span><span style="flex:none;color:#8FC7A8">→</span></a>
+<a href="products/tutoring.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Тьюторское сопровождение</span><span style="flex:none;color:#8FC7A8">→</span></a>
+<a href="products/full-support.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Полное сопровождение в обучении</span><span style="flex:none;color:#8FC7A8">→</span></a>
+<a href="products/parents.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Сопровождение родителей</span><span style="flex:none;color:#8FC7A8">→</span></a>
+<a href="products/about.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Обо мне</span><span style="flex:none;color:#8FC7A8">→</span></a>
+<a href="products/texts.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Тексты</span><span style="flex:none;color:#8FC7A8">→</span></a>
+</div>
+<a class="more-all" href="products/" style="display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(95,191,141,.12);border:1px solid rgba(95,191,141,.28);border-radius:14px;padding:16px 18px"><span style="color:#8FC7A8;font-weight:600">Открыть весь раздел</span><span style="flex:none;color:#8FC7A8">→</span></a>
 </div>
 
 </div>
