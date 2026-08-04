@@ -73,6 +73,19 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 .pg a{text-decoration:none;color:inherit}
 .pg svg{display:block}
 .wrap{max-width:700px;margin:0 auto}
+/* ===== Десктоп (>=960px). Вёрстка та же самая, одна колонка — меняются только
+   ширина колонки и кегль. Никаких перестроений блоков здесь быть не должно. ===== */
+@media (min-width:960px){
+.wrap{max-width:910px}
+.pg{font-size:18px!important}
+.pg h1{font-size:42px!important}
+.pg h2{font-size:30px!important}
+.pg .sec-intro p:first-child,.pg .outro-body>div:first-child>p:first-child{font-size:23px!important}
+/* Портреты: на большом экране кадр в полный рост слишком высокий, срезаем
+   сверху 20% и снизу 10%. 724x1086 минус 30% высоты = соотношение 724/760.
+   object-position 66.67% и есть та самая пропорция среза 20 к 10. */
+.pg img[src^="portrait-"]{aspect-ratio:724/760;object-fit:cover;object-position:50% 66.67%}
+}
 </style>
 </head>
 <body class="">
@@ -206,16 +219,7 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 
 <div class="sec-more" style="padding:0 24px 46px;display:flex;flex-direction:column;gap:16px">
 <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:40px"><span style="display:block;width:26px;height:2px;background:#5FBF8D;margin-bottom:14px"></span><h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:27px;line-height:1.12;color:#fff;letter-spacing:-.01em">Мои остальные продукты</h2></div>
-<p style="color:#949c95">Кроме проекта, описанного выше, я веду отдельные направления: карьерный коучинг со взрослыми, тьюторство, сопровождение в учёбе и работу с родителями. Всё это собрано в отдельном разделе вместе с текстами.</p>
-<div class="more-links" style="display:flex;flex-direction:column;gap:10px">
-<a href="products/career.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Карьерный коучинг</span><span style="flex:none;color:#8FC7A8">→</span></a>
-<a href="products/tutoring.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Тьюторское сопровождение</span><span style="flex:none;color:#8FC7A8">→</span></a>
-<a href="products/full-support.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Полное сопровождение в обучении</span><span style="flex:none;color:#8FC7A8">→</span></a>
-<a href="products/parents.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Сопровождение родителей</span><span style="flex:none;color:#8FC7A8">→</span></a>
-<a href="products/about.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Обо мне</span><span style="flex:none;color:#8FC7A8">→</span></a>
-<a href="products/texts.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 18px"><span style="color:#fff;font-weight:500">Тексты</span><span style="flex:none;color:#8FC7A8">→</span></a>
-</div>
-<a class="more-all" href="products/" style="display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(95,191,141,.12);border:1px solid rgba(95,191,141,.28);border-radius:14px;padding:16px 18px"><span style="color:#8FC7A8;font-weight:600">Открыть весь раздел</span><span style="flex:none;color:#8FC7A8">→</span></a>
+<p style="color:#949c95">Кроме проекта, описанного выше, я веду отдельные направления: карьерный коучинг со взрослыми, тьюторство, сопровождение в учёбе и работу с родителями. <a href="products/" target="_blank" rel="noopener" style="color:#8FC7A8;border-bottom:1px solid rgba(143,199,168,.45);padding-bottom:1px">Узнать подробнее</a>.</p>
 </div>
 
 </div>
