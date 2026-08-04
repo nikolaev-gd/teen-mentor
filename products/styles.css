@@ -10,6 +10,10 @@
   --text: #1A1814;
   --text-secondary: #57534E;
   --text-muted: #A8A29E;
+  /* Подпись в шапке и неактивные пункты меню. --text-muted даёт к --bg
+     всего 2.40:1 — такой текст физически не читается. Здесь 7.25:1 (AAA).
+     Отдельный токен, потому что --text-muted задействован ещё и в границах. */
+  --header-muted: #57534E;
   --accent: #2C2825;
   --accent-hover: #44403C;
   --border: #E7E5E4;
@@ -218,7 +222,7 @@ strong {
 /* Подпись — базовый стиль (оригинальный вариант) */
 .header-subtitle {
   font-size: 2.8vw;
-  color: var(--text-muted);
+  color: var(--header-muted);
   line-height: 1.35;
   max-width: 33.5vw;
 }
@@ -240,39 +244,47 @@ strong {
   border-radius: 2px;
 }
 
+/* Меню одно на все ширины и всегда открывается бургером, поэтому строки
+   пунктов в шапке нет вовсе. */
 .nav-desktop {
   display: none;
-  gap: 1.75rem;
 }
 
-.nav-desktop a {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  transition: color var(--transition);
-  white-space: nowrap;
+/* Кнопка «Написать» — только начиная с десктопа */
+.header-contact {
+  display: none;
 }
 
-.nav-desktop a:hover,
-.nav-desktop a.active {
-  color: var(--text);
-}
-
+/* --- Бургер ---
+   Полоски вынесены в .menu-toggle-bars, чтобы рядом с иконкой помещалось
+   слово «Меню» (на телефоне оно скрыто). */
 .menu-toggle {
   display: flex;
-  flex-direction: column;
-  gap: 1.3vw;
+  flex-direction: row;
+  align-items: center;
+  gap: 2vw;
   padding: 1.5vw;
   flex-shrink: 0;
   margin-left: 3vw;
 }
 
-.menu-toggle span {
+.menu-toggle-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3vw;
+}
+
+.menu-toggle-bars span {
   display: block;
   width: 5.6vw;
   height: 0.5vw;
   background: var(--text);
   border-radius: 1px;
   transition: var(--transition);
+}
+
+.menu-toggle-label {
+  display: none;
 }
 
 /* --- Navigation Overlay (mobile) --- */
@@ -324,8 +336,12 @@ strong {
   background: var(--bg-alt);
 }
 
+/* Активный пункт был самым бледным текстом во всём меню — теперь наоборот */
 .nav-overlay a.active {
-  color: var(--text-muted);
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 
 /* ===========================
@@ -405,7 +421,7 @@ strong {
 /* --- Section Label --- */
 .section-label {
   font-size: 0.8125rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 500;
@@ -556,7 +572,7 @@ strong {
 .back-link {
   display: inline-block;
   font-size: 0.875rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   transition: color var(--transition);
 }
@@ -615,7 +631,7 @@ strong {
   content: '\2192';
   flex-shrink: 0;
   margin-left: 1rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 1.125rem;
   transition: transform 0.3s ease;
 }
@@ -1030,7 +1046,7 @@ strong {
   padding: 2rem var(--gutter);
   text-align: center;
   font-size: 0.8125rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   border-top: 1px solid var(--border);
   margin-top: 1rem;
 }
@@ -1042,7 +1058,7 @@ strong {
 @media (min-width: 640px) {
   :root {
     --gutter: 2rem;
-    --header-h: 56px;
+    --header-h: 60px;
   }
 
   h1 {
@@ -1063,15 +1079,22 @@ strong {
   }
 
   .header-name {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 
   .header-divider {
     height: 24px;
   }
 
+  /* Раньше здесь было 11px строчными приглушённым серым — на планшетных
+     ширинах подпись пропадала. Теперь она такая же, как на десктопе. */
   .header-subtitle {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    white-space: nowrap;
     max-width: none;
   }
 
@@ -1080,12 +1103,16 @@ strong {
   }
 
   .menu-toggle {
-    gap: 5px;
-    padding: 6px;
+    gap: 8px;
+    padding: 8px 6px;
     margin-left: 12px;
   }
 
-  .menu-toggle span {
+  .menu-toggle-bars {
+    gap: 5px;
+  }
+
+  .menu-toggle-bars span {
     width: 22px;
     height: 2px;
   }
@@ -1191,7 +1218,7 @@ strong {
 @media (min-width: 1024px) {
   :root {
     --gutter: 2rem;
-    --header-h: 56px;
+    --header-h: 65px;
   }
 
   h1 {
@@ -1202,43 +1229,86 @@ strong {
     font-size: 1.75rem;
   }
 
+  /* --- Шапка (>=1024) ---
+     Одна строка на всех ширинах: имя, вертикальная черта, подпись капсом,
+     справа кнопка «Написать» и бургер со словом «Меню».
+     Строки пунктов в шапке нет: шесть полных названий («Полное сопровождение
+     в обучении» и т.п.) в строку не помещаются даже на 4K, а сокращать их
+     нельзя. Всё меню живёт за бургером, поэтому шапка выглядит одинаково
+     на 1024 и на 2560 — расширение окна ничего не переставляет.
+
+     Колпак 1320px: столько же у контейнера главной, поэтому имя в шапке
+     встаёт ровно над левым краем геройской карточки. */
   .header {
-    padding: 0 max(2.5rem, calc((100% - 1200px) / 2));
+    padding: 0 max(2rem, calc((100% - 1320px) / 2));
     gap: 2rem;
   }
 
   .header-brand {
-    gap: 0.75rem;
+    align-items: baseline;
+    gap: 0.875rem;
+    flex: 0 1 auto;
+    min-width: 0;
   }
 
   .header-name {
-    font-size: 1.25rem;
-  }
-
-  .header-subtitle {
-    font-size: 0.75rem;
-    max-width: none;
+    font-size: 1.375rem;      /* 22px */
   }
 
   .header-divider {
-    height: 28px;
+    align-self: center;
+    height: 24px;
   }
 
-  .header-brand--stamp .header-subtitle {
-    font-size: 0.5625rem;
+  /* Подпись: 13px, вес 500, капс с разрядкой.
+     Было 13px/400 цветом --text-muted — контраст 2.40:1, ниже любого порога
+     WCAG, отсюда и «не видно». Стало --header-muted: 7.25:1 в светлой теме
+     и 7.55:1 в тёмной, обе — уровень AAA. */
+  .header-subtitle {
+    font-size: 0.8125rem;     /* 13px */
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    max-width: none;
   }
 
-  .nav-desktop {
-    display: flex;
-    gap: 1.1rem;
+  /* Тихая кнопка связи в правой части шапки */
+  .header-contact {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding: 0.5rem 1rem;     /* высота 44px */
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color var(--transition), background var(--transition);
   }
 
-  .nav-desktop a {
-    font-size: 0.85rem;
+  .header-contact:hover {
+    border-color: var(--text-muted);
+    background: var(--bg-alt);
   }
 
+  /* Бургер со словом «Меню», чтобы иконка не была загадкой */
   .menu-toggle {
-    display: none;
+    gap: 0.625rem;
+    padding: 0.875rem 0.5rem;   /* хит-зона 96×44 */
+    margin-left: 1.25rem;
+  }
+
+  .menu-toggle-label {
+    display: inline;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
   }
 
   /* --- Hero: two columns on desktop --- */
@@ -1566,7 +1636,7 @@ strong {
   }
 
   .header {
-    padding: 0 max(3rem, calc((100% - 1200px) / 2));
+    padding: 0 max(3rem, calc((100% - 1320px) / 2));
   }
 
   .hero {
@@ -1812,8 +1882,10 @@ strong {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
   }
 
+  /* Было var(--text-secondary) — на тёмной плашке в светлой теме это 1.98:1.
+     --dark-text-soft уже используется для текста на таких же плашках. */
   .home-page .speaking-text p {
-    color: var(--text-secondary);
+    color: var(--dark-text-soft);
   }
 
   .home-page .speaking-text p:first-child {
@@ -2139,8 +2211,10 @@ strong {
     padding: 1.35rem 1rem;
   }
 
+  /* Было var(--text-secondary) — на тёмной плашке в светлой теме это 1.98:1.
+     --dark-text-soft уже используется для текста на таких же плашках. */
   .home-page .speaking-text p {
-    color: var(--text-secondary);
+    color: var(--dark-text-soft);
   }
 
   .home-page .speaking-text p:first-child {
@@ -3104,8 +3178,11 @@ strong {
   padding-bottom: 3rem;
 }
 
+/* Карточка — колонка: «читать дальше» прижимается к низу, иначе в ряду
+   из трёх карточек он гулял по вертикали на 26-27px. */
 .blog-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
 }
@@ -3121,6 +3198,9 @@ strong {
 
 .blog-card__body {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .blog-card__title {
@@ -3145,6 +3225,8 @@ strong {
 
 .blog-card__link {
   display: inline-block;
+  margin-top: auto;
+  align-self: flex-start;
   color: var(--accent);
   font-size: 0.8rem;
   font-weight: 500;
@@ -3255,9 +3337,116 @@ strong {
     --stamp-rgb: 155, 74, 86;
     --modal-close-bg: rgba(30, 30, 30, 0.7);
     --modal-close-bg-hover: rgba(30, 30, 30, 0.9);
+    /* Подпись в шапке и неактивные пункты меню: 7.55:1 к фону (AAA).
+       Было --text-muted #A0A0A0 = 6.58:1. */
+    --header-muted: #B0ABA4;
   }
 
   .home-page .speaking-text p:first-child {
     color: var(--text);
+  }
+}
+
+
+/* Комфортная длина строки на десктопе.
+   Было: карточка 1060–1320px, в строке ~110 знаков — глаз теряет строку.
+   Стало: ~880px, в строке ~75 знаков. */
+@media (min-width: 1024px) {
+  .career-page .page-hero,
+  .career-page .container > section.content-section,
+  .career-page .steps-section,
+  .career-page .cta,
+  .service-page:not(.career-page) .page-hero,
+  .service-page:not(.career-page) .container > section.content-section,
+  .service-page:not(.career-page) .steps-section,
+  .service-page:not(.career-page) .cta,
+  .about-page .page-hero,
+  .about-page .about-lead,
+  .about-page .about-section,
+  .about-page .about-ps,
+  .about-page .cta {
+    max-width: min(880px, calc(100% - 2rem));
+  }
+
+  /* Шаги: три в ряд. Если шагов четыре — две колонки, чтобы не было сироты */
+  .career-page .steps-section:has(.step:nth-of-type(4)),
+  .service-page:not(.career-page) .steps-section:has(.step:nth-of-type(4)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Главная: четыре карточки услуг. В три колонки четвёртая оставалась
+   одна в ряду и справа зияла дыра — держим сетку 2×2 на всех ширинах. */
+@media (min-width: 1280px) {
+  .home-page .services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Главная, блок «Поговорим?»: раньше кнопки висели в пустоте под текстом.
+   Оформляем как полноценную полосу — в одном ряду с остальными секциями. */
+@media (min-width: 1024px) {
+  .home-page .cta {
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+    padding: 2.6rem 2.8rem 2.8rem;
+    border: 1px solid var(--tile-border);
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-warm) 100%);
+    box-shadow: 0 10px 30px rgba(var(--shadow-rgb), 0.05);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 2.5rem;
+    row-gap: 1.25rem;
+  }
+
+  .home-page .cta-text {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    margin-bottom: 0;
+    font-size: 1.85rem;
+    max-width: 18ch;
+  }
+
+  .home-page .cta-buttons {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-end;
+    gap: 0.7rem;
+  }
+
+  .home-page .cta-channel {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    margin-top: 0;
+  }
+
+  /* Фото на полосе «выступать и зажигать глаза» обрезалось по макушке */
+  .home-page .speaking-photo img {
+    object-position: center 28%;
+  }
+}
+
+/* ===========================
+   ФОКУС С КЛАВИАТУРЫ
+   Во всём файле не было ни одного :focus-visible и ни одного outline —
+   Chrome рисовал своё синее кольцо посреди тёплой бежевой палитры.
+   Бордовый из палитры: 8.76:1 в светлой теме, 5.57:1 в тёмной,
+   при минимуме 3:1 для нетекстовых элементов (WCAG 1.4.11).
+   =========================== */
+:focus-visible {
+  outline: 2px solid var(--stamp);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
