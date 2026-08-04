@@ -27,6 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Spline+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="(min-width:960px)">
   <!-- Yandex.Metrika counter -->
   <script async="" src="https://mc.yandex.ru/metrika/tag.js?id=106335095"></script><script type="text/javascript">
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -73,54 +74,68 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 .pg a{text-decoration:none;color:inherit}
 .pg svg{display:block}
 .wrap{max-width:600px;margin:0 auto}
-/* ===== Десктоп (>=960px). Мобильная вёрстка ниже этого порога не затронута ===== */
+/* ===== Десктоп (>=960px): полноэкранный лендинг — сплит-hero, полосы секций, сетки карточек. Мобильная вёрстка не затронута ===== */
 @media (min-width:960px){
-.wrap{max-width:1200px;padding:0 48px}
-.pg{font-size:17px!important}
-.content h2{font-size:34px!important}
-.content>[class^="sec-"]>div:first-child>span:first-child{width:44px!important}
-/* Hero: заголовок слева, портрет справа */
-.hero{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center;padding:64px 0 0}
-.hero-title{order:1;padding:0!important}
-.hero-media{order:2}
-.hero-media img{border-radius:28px;border:1px solid rgba(255,255,255,.08);max-height:680px;object-fit:cover;object-position:top}
+.wrap{max-width:none;padding:0}
+.pg{font-size:17px!important;line-height:1.68!important}
+.pg,.pg *{font-family:'Golos Text','Spline Sans',system-ui,sans-serif!important}
+.content{display:block!important;padding:0!important}
+.content h2{font-size:36px!important}
+/* Hero: заголовок и подводка слева, портрет справа, на всю ширину */
+.hero{display:grid;grid-template-columns:1.08fr .92fr;grid-template-areas:"title media" "intro media";column-gap:72px;align-items:center;padding:88px max(64px,calc(50% - 570px)) 96px;background:radial-gradient(1000px 560px at 80% 0%,rgba(95,191,141,.09),rgba(11,13,12,0) 62%)}
+.hero-media{grid-area:media}
+.hero-media img{border-radius:24px;border:1px solid rgba(255,255,255,.07);max-height:600px;object-fit:cover;object-position:50% 18%}
 .hero-media>div{display:none}
-.hero-title h1{font-size:clamp(44px,4.2vw,58px)!important;line-height:1.05!important;margin-top:0!important}
-.hero-title h1::before{content:"";display:block;width:44px;height:3px;background:#5FBF8D;margin-bottom:30px}
-/* Ритм контента: текст — колонка 800px, широкие блоки — 1104px */
-.content{padding:96px 0 0!important;gap:76px!important}
-.sec-intro,.sec-quote,.sec-what,.sec-my,.sec-team,.sec-money{width:100%;max-width:800px;margin:0 auto}
-.sec-cards,.sec-results,.sec-plan{width:100%;max-width:1104px;margin:0 auto}
-.sec-results>div:first-child,.sec-results>p,.sec-plan>div:first-child,.sec-plan>p{width:100%;max-width:800px;margin:0 auto}
-.sec-intro p:first-child{font-size:25px!important;line-height:1.3!important}
-.sec-quote{padding:26px 32px!important;border-radius:10px!important}
-.sec-quote p{font-size:20px!important}
-/* Карточки 01–03 — широкие горизонтальные ряды */
-.sec-cards{gap:18px!important}
-.sec-cards>div{display:grid!important;grid-template-columns:280px 1fr;gap:10px 56px;align-items:start;padding:34px 40px!important;border-radius:20px!important}
-.sec-cards>div>div:first-child{grid-column:1;grid-row:1}
-.sec-cards>div>p{grid-column:2}
-.sec-cards h3{font-size:25px!important}
-/* Чек-карточки результатов — три в ряд */
-.checks{display:grid!important;grid-template-columns:repeat(3,1fr);gap:16px!important}
-.checks>div{flex-direction:column!important;gap:14px!important;padding:24px!important;border-radius:16px!important}
+.hero-title{grid-area:title;align-self:end;padding:0!important}
+.hero-title h1{font-size:54px!important;line-height:1.07!important;margin:0!important}
+.hero-intro{grid-area:intro;align-self:start;padding:28px 0 0!important}
+/* Цитата-боль */
+.sec-quote{margin:72px auto 0;width:calc(100% - 128px);max-width:880px;padding:30px 36px!important;border-radius:12px!important}
+.sec-quote p{font-size:20px!important;line-height:1.55!important}
+/* Центрированные заголовки секций */
+.sec-what>div:first-child,.sec-my>div:first-child,.sec-team>div:first-child,.sec-results>div:first-child,.sec-plan>div:first-child,.sec-money>div:first-child{text-align:center}
+.sec-what>div:first-child span,.sec-my>div:first-child span,.sec-team>div:first-child span,.sec-results>div:first-child span,.sec-plan>div:first-child span,.sec-money>div:first-child span{margin:0 auto 18px!important;width:40px!important}
+/* Итак, что мы делаем + три карточки в ряд */
+.sec-what{margin:104px auto 0;max-width:688px;padding:0 24px}
+.sec-what>p{text-align:center}
+.sec-cards{margin:48px auto 0;max-width:1160px;padding:0 32px;display:grid!important;grid-template-columns:.95fr 1.2fr 1.05fr;gap:20px!important}
+.sec-cards>div{padding:28px 28px 32px!important;border-radius:18px!important}
+.sec-cards h3{font-size:22px!important}
+.sec-cards p{font-size:16px!important;line-height:1.62!important}
+/* Что делаю я — полоса на всю ширину */
+.sec-my{margin-top:112px;padding:88px max(64px,calc(50% - 360px));background:#0f1418}
+/* Кто ведёт систему — три роли карточками */
+.sec-team{margin:112px auto 0;max-width:1080px;padding:0 32px;width:100%}
+.sec-team>p{max-width:720px;margin:0 auto;width:100%}
+.sec-team>div:nth-of-type(2){border-left:0!important;padding-left:0!important;margin:8px 0 0!important;display:grid!important;grid-template-columns:repeat(3,1fr);gap:20px!important}
+.sec-team>div:nth-of-type(2)>div{background:#14181c;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px}
+.sec-team>div:nth-of-type(2)>div>span{position:static!important;display:block;margin-bottom:14px}
+.sec-team>div:nth-of-type(2) p{font-size:16px!important}
+/* Результат — полоса, чек-карточки в ряд */
+.sec-results{margin-top:112px;padding:88px max(64px,calc(50% - 580px));background:#0f1418}
+.sec-results>p{max-width:720px;margin:0 auto;width:100%}
+.checks{display:grid!important;grid-template-columns:repeat(3,1fr);gap:18px!important}
+.checks>div{flex-direction:column!important;gap:12px!important;padding:24px!important;border-radius:16px!important}
 .checks svg{width:22px!important;height:22px!important}
-.sec-results>p:last-child{font-size:21px!important}
-/* План развития — шаги горизонтально */
-.plan-steps{display:grid!important;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px!important;align-items:stretch}
+.checks p{font-size:16px!important}
+.sec-results>p:last-child{max-width:800px;text-align:center;font-size:20px!important}
+/* План — шаги в строку */
+.sec-plan{margin:112px auto 0;max-width:1000px;padding:0 32px;width:100%}
+.sec-plan>p{max-width:720px;margin:0 auto;width:100%}
+.plan-steps{display:grid!important;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px!important;align-items:stretch;margin:10px 0 6px}
 .plan-steps>div:nth-child(odd){padding:20px 22px!important;border-radius:14px!important}
 .plan-steps>div:nth-child(even){display:flex;align-items:center;justify-content:center}
 .plan-steps>div:nth-child(even) svg{transform:rotate(-90deg)}
 /* Деньги */
-.sec-money{padding:44px 48px!important;border-radius:24px!important}
-/* Финал: портрет слева, контакты справа */
-.outro{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center;padding:96px 0 110px}
+.sec-money{margin:112px auto 0;width:calc(100% - 128px);max-width:840px;padding:52px 56px!important;border-radius:24px!important}
+/* Финал — полоса: портрет слева, контакты сеткой */
+.outro{margin-top:112px;background:#0f1418;display:grid;grid-template-columns:400px 1fr;gap:72px;align-items:center;padding:96px max(64px,calc(50% - 520px))}
 .outro-media{margin:0!important}
-.outro-media img{border-radius:28px;border:1px solid rgba(255,255,255,.08);max-height:640px;object-fit:cover;object-position:top}
+.outro-media img{height:480px;object-fit:cover;object-position:50% 20%;border-radius:24px;border:1px solid rgba(255,255,255,.07)}
 .outro-media>div{display:none}
-.outro-body{padding:0!important;gap:28px!important}
-.outro-body>div:first-child>p:first-child{font-size:30px!important;line-height:1.28!important}
-.contacts{display:grid!important;grid-template-columns:1fr 1fr;gap:14px!important}
+.outro-body{padding:0!important;gap:22px!important}
+.outro-body>div:first-child>p:first-child{font-size:28px!important;line-height:1.25!important}
+.contacts{display:grid!important;grid-template-columns:1fr 1fr;gap:12px!important}
 }
 </style>
 </head>
@@ -139,15 +154,15 @@ body{margin:0;background:#0b0d0c;font-family:'Spline Sans',system-ui,sans-serif;
 
 <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:37px;line-height:1.08;letter-spacing:-.02em;margin-top:14px;color:#fff">Как помочь подростку подготовиться к&nbsp;будущему?</h1>
 </div>
-</div>
 
-<div class="content" style="padding:32px 24px 0;display:flex;flex-direction:column;gap:34px">
-
-<div class="sec-intro" style="display:flex;flex-direction:column;gap:15px">
+<div class="hero-intro" style="display:flex;flex-direction:column;gap:15px;padding:32px 24px 2px">
 <p style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:21px;line-height:1.3;color:#fff">Привет, меня зовут Геннадий Николаев.</p>
 <p>Я помогаю семье максимально эффективно пройти путь от школы к профессии. Цель одна – выжать максимум из потенциала подростка, при этом чтобы попутно он научился кайфовать от процесса саморазвития, а родители были поддержкой и опорой, а не надзирателями.<br></p>
 <p style="color:#949c95">Около десяти лет я сопровождаю подростков — от средней школы до выпуска из университета и первых профессиональных шагов. Ниже я хочу поделиться своим опытом и показать, чем могу быть полезен.</p>
 </div>
+</div>
+
+<div class="content" style="padding:32px 24px 0;display:flex;flex-direction:column;gap:34px">
 
 <div class="sec-quote" style="background:#14181c;border-left:3px solid #5FBF8D;border-radius:6px;padding:18px 20px">
 <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1.42;color:#e2e6df">Обычно ко мне приходят, когда подросток в 9–10 классе: впереди ОГЭ, ЕГЭ, поступление. <br><br>При этом, учёбу пытаются вытянуть количеством — больше часов, больше репетиторов, — а отдача не растёт.</p>
