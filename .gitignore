@@ -16,6 +16,7 @@ CLAUDE.md
 # Исходные тексты
 *.md
 !LESSONS.md
+!_mirror/legal/notes.md
 
 # Временные файлы
 _to_delete/

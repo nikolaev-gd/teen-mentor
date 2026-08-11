@@ -5,6 +5,10 @@
 
     nikolaev-mentor.site/        английская главная — файл _mirror/index.en.html
     nikolaev-mentor.site/ru/     русская главная, цены пересчитаны в евро
+    nikolaev-mentor.site/terms/    \
+    nikolaev-mentor.site/privacy/   > юридические страницы из _mirror/legal/,
+    nikolaev-mentor.site/refunds/  /  нужны для приёма оплаты через Creem
+    nikolaev-mentor.site/contact/ /
     nikolaev-mentor.site/products/ ...  всё остальное повторяет основной сайт
 
 На самом nikolaev-mentor.ru английской страницы нет: она лежит в папке
@@ -77,6 +81,11 @@ def main():
 
     # Корень зеркала — английская страница.
     write(outdir, "index.html", show(branch, "_mirror/index.en.html"))
+
+    # Юридические страницы: файл _mirror/legal/terms.html становится /terms/
+    # и так далее. Каталог с index.html внутри, чтобы адрес был без .html.
+    for name in ("terms", "privacy", "refunds", "contact"):
+        write(outdir, f"{name}/index.html", show(branch, f"_mirror/legal/{name}.html"))
 
     # Русская главная — на /ru/.
     text = show(branch, "index.html")
