@@ -191,3 +191,34 @@ p { margin: 0 }
   h2 { font-size: 30px }
   .lead p:first-child { font-size: 23px }
 }
+
+/* --- Таблица сравнения. На узком экране уезжает вбок внутри своей рамки,
+   страница целиком вправо не едет. --- */
+.tbl { overflow-x: auto; -webkit-overflow-scrolling: touch }
+.tbl table {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  background: #14181c;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.tbl th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.tbl th:first-child { color: #949c95 }
+.tbl th:last-child { color: #8FC7A8 }
+.tbl td {
+  padding: 13px 18px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  vertical-align: top;
+  font-size: 15px;
+}
+.tbl td:first-child { color: #949c95 }
