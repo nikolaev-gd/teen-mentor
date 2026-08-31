@@ -41,6 +41,8 @@ RU_REPLACEMENTS = [
     ('href="favicon-32x32.png"',   'href="../favicon-32x32.png"'),
     ('href="favicon-16x16.png"',   'href="../favicon-16x16.png"'),
     ('href="apple-touch-icon.png"', 'href="../apple-touch-icon.png"'),
+    ('srcset="portrait-1.webp"',   'srcset="../portrait-1.webp"'),
+    ('srcset="portrait-2.webp"',   'srcset="../portrait-2.webp"'),
     ('src="portrait-1.jpeg"',      'src="../portrait-1.jpeg"'),
     ('src="portrait-2.jpeg"',      'src="../portrait-2.jpeg"'),
     ('href="products/"',           'href="../products/"'),

@@ -386,6 +386,29 @@ strong {
   object-position: center top;
 }
 
+/* Картинки завёрнуты в <picture> ради webp — тег должен занимать всю рамку,
+   иначе height:100% у img не сработает. display здесь НЕ задаём: им управляют
+   .hero-photo-mobile / .hero-photo-desktop, и более специфичный селектор
+   перебил бы переключение мобильной и десктопной версий фото. */
+.hero-photo picture {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-photo-mobile {
+  display: block;
+}
+
+.hero-photo.no-image picture {
+  display: none;
+}
+
+.speaking-photo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-photo-desktop {
   display: none;
 }

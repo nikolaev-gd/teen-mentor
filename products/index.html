@@ -97,6 +97,26 @@
     }
   }
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://nikolaev-mentor.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Услуги",
+      "item": "https://nikolaev-mentor.ru/products/"
+    }
+  ]
+}
+</script>
 </head>
 <body class="home-page">
 
@@ -107,8 +127,14 @@
 
     <section class="hero">
       <div class="hero-photo">
-        <img src="portrait-1.jpeg" class="hero-photo-mobile" alt="Геннадий Николаев" onerror="this.parentElement.classList.add('no-image')">
-        <img src="portrait-1.jpeg" class="hero-photo-desktop" alt="Геннадий Николаев">
+        <picture class="hero-photo-mobile">
+          <source srcset="portrait-1.webp" type="image/webp">
+          <img src="portrait-1.jpeg" alt="Геннадий Николаев — коуч, тьютор, наставник" width="724" height="1086" fetchpriority="high" onerror="this.closest('.hero-photo').classList.add('no-image')">
+        </picture>
+        <picture class="hero-photo-desktop">
+          <source srcset="portrait-1.webp" type="image/webp">
+          <img src="portrait-1.jpeg" alt="Геннадий Николаев — коуч, тьютор, наставник" width="724" height="1086">
+        </picture>
       </div>
       <div class="hero-text">
         <h1 class="tagline">Помогаю людям становиться сложнее и&nbsp;кайфовать от&nbsp;этого</h1>
@@ -167,7 +193,10 @@
 
       <section class="speaking">
         <div class="speaking-photo">
-          <img src="speaking-photo.jpg" alt="Геннадий Николаев выступает">
+          <picture>
+            <source srcset="speaking-photo.webp" type="image/webp">
+            <img src="speaking-photo.jpg" alt="Геннадий Николаев выступает перед школьниками и родителями" width="1200" height="674" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="speaking-text">
           <p>А ещё моя любовь — выступать и зажигать глаза!</p>
